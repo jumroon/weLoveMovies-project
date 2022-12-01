@@ -4,4 +4,4 @@ function list() {
   return knex("movies").select("*");
 }
 
-module.exports = list;
+module.exports = { list };
