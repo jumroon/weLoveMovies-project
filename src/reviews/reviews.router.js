@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require("./theaters.controller");
+const controller = require("./reviews.controller");
 const methodNotAllowed = require("../utils/errors/methodNotAllowed");
 
 router.route("/").get(controller.list).all(methodNotAllowed);
