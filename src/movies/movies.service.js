@@ -1,8 +1,8 @@
-// const knex = require("../db/connection");
+const knex = require("../db/connection");
 
-// function list() {
-//   // return knex("movies").select("*");
-//   return "HELLO";
-// }
+function list() {
+  // return knex("movies").select("*");
+  return "HELLO";
+}
 
-// module.exports = list;
+module.exports = list;
