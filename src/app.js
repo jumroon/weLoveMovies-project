@@ -5,7 +5,7 @@ const cors = require("cors");
 const errorHandler = require("./utils/errors/errorHandler");
 const notFound = require("./utils/errors/notFound");
 const reviewsRouter = require("./reviews/reviews.router");
-const moviesRouter = require("./movies/movies.router");
+const moviesRouter = require("./movies/movies.router").router;
 const theatersRouter = require("./theaters/theaters.router");
 
 app.use(cors());
