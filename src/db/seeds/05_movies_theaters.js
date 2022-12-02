@@ -18,5 +18,5 @@ exports.seed = async function (knex) {
   const theaterIds = await knex("theaters").select("theater_id");
 
   const joins = generateMoviesTheatersJoins(movieIds, theaterIds);
-  return knex("movie_theaters").insert(joins);
+  return knex("movies_theaters").insert(joins);
 };
