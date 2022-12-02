@@ -15,4 +15,8 @@ function listShowings() {
   });
 }
 
-module.exports = { list, listShowings };
+function getMovieById(movieId) {
+  return knex("movies").select("*").where({ movie_id: movieId });
+}
+
+module.exports = { list, listShowings, getMovieById };
