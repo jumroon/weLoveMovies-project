@@ -22,16 +22,44 @@ async function checkIfMovieIdExists(request, response, next) {
   }
 }
 
-function getMovieById(response, request, next) {
-  console.log(request);
-
-  response.status(204).json({ data });
+async function getMovieById(request, response) {
+  const result = await service.getMovieById(request.params.movieId);
+  response.status(200).json({ data: result[0] });
 }
 
+async function getTheaters(request, response) {
+  const result = await service.getTheaters(request.params.movieId);
+  response.status(200).json({ data: result });
+}
+
+async function getReviews(request, response) {
+  const resultArray = await service.getReviews(request.params.movieId);
+  let result = resultArray.map((item) => {
+    return {
+      movie_id: item.movie_id,
+      critic: {
+        preferred_name: item.preferred_name,
+        surname: item.surname,
+        organization_name: item.organization_name,
+      },
+    };
+  });
+
+  console.log("NEWARRAY", result);
+  response.status(200).json({ data: result });
+}
 module.exports = {
   list: asyncErrorBoundary(list),
   getMovieById: [
     asyncErrorBoundary(checkIfMovieIdExists),
-    // asyncErrorBoundary(getMovieById),
+    asyncErrorBoundary(getMovieById),
+  ],
+  getTheaters: [
+    asyncErrorBoundary(checkIfMovieIdExists),
+    asyncErrorBoundary(getTheaters),
+  ],
+  getReviews: [
+    asyncErrorBoundary(checkIfMovieIdExists),
+    asyncErrorBoundary(getReviews),
   ],
 };
