@@ -20,7 +20,7 @@ describe("Movie Routes", () => {
   });
 
   describe("GET /movies", () => {
-    test.only("should return a list of all movies by default", async () => {
+    test("should return a list of all movies by default", async () => {
       const response = await request(app).get("/movies");
 
       const data = response.body.data;
