@@ -3,7 +3,6 @@ const asyncErrorBoundary = require("../utils/errors/asyncErrorBoundary");
 
 async function list(request, response, next) {
   const result = await service.list();
-  // console.log("result", result);
 
   const testResult = result.map((movie) => {
     return {
@@ -37,25 +36,8 @@ async function list(request, response, next) {
     }
   }
 
-  console.log(newArray);
   response.status(200).json({ data: newArray });
 }
-
-// const expectedHollywoodTheatre = {
-//   name: "Hollywood Theatre",
-//   address_line_1: "4122 NE Sandy Blvd.",
-//   address_line_2: "",
-//   city: "Portland",
-//   state: "OR",
-//   zip: "97212",
-//   movies: expect.arrayContaining([
-//     expect.objectContaining({
-//       title: "Spirited Away",
-//       runtime_in_minutes: 125,
-//       rating: "PG",
-//     }),
-//   ]),
-// };
 
 module.exports = {
   list: asyncErrorBoundary(list),
