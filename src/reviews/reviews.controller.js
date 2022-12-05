@@ -2,7 +2,7 @@ const service = require("./reviews.service");
 const asyncErrorBoundary = require("../utils/errors/asyncErrorBoundary");
 
 async function checkIfReviewExists(request, response, next) {
-  const result = await service.checkIfReviewExists(request.params.reviewId);
+  const result = await service.findReviewId(request.params.reviewId);
 
   if (result.length !== 0) {
     return next();
@@ -41,6 +41,16 @@ async function update(request, response, next) {
   response.status(200).json({ data: reformattedReview[0] });
 }
 
+async function deletedReview(request, response, next) {
+  const { reviewId } = request.params;
+  await service.deleteReview(reviewId);
+  response.sendStatus(204);
+}
+
 module.exports = {
   update: [asyncErrorBoundary(checkIfReviewExists), asyncErrorBoundary(update)],
+  delete: [
+    asyncErrorBoundary(checkIfReviewExists),
+    asyncErrorBoundary(deletedReview),
+  ],
 };

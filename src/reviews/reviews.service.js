@@ -1,6 +1,6 @@
 const knex = require("../db/connection");
 
-function checkIfReviewExists(reviewId) {
+function findReviewId(reviewId) {
   return knex("reviews").select("*").where({ review_Id: reviewId });
 }
 
@@ -16,4 +16,19 @@ async function update(reviewId, updatedReview) {
     .first();
 }
 
-module.exports = { update, checkIfReviewExists };
+function deleteReview(reviewId) {
+  return knex("reviews").where({ review_id: reviewId }).del();
+}
+
+// knex
+//   .del((table) => {
+//     table.from("users").where("id", "=", 1);
+//   })
+//   .then(() => {
+//     console.log("Row deleted successfully!");
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+module.exports = { update, findReviewId, deleteReview };
