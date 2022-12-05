@@ -20,7 +20,7 @@ describe("Theater Routes", () => {
   });
 
   describe("GET /theaters", () => {
-    test("should return a list of all theaters, including the 'movies' each theatre is showing", async () => {
+    test.only("should return a list of all theaters, including the 'movies' each theatre is showing", async () => {
       const expectedHollywoodTheatre = {
         name: "Hollywood Theatre",
         address_line_1: "4122 NE Sandy Blvd.",
