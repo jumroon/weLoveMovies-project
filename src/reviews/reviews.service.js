@@ -1,7 +1,7 @@
 const knex = require("../db/connection");
 
-function list() {
-  return knex("movies").select("*");
+function checkIfReviewExists(reviewId) {
+  return knex("reviews").select("*").where({ review_Id: reviewId });
 }
 
 async function update(reviewId, updatedReview) {
@@ -16,4 +16,4 @@ async function update(reviewId, updatedReview) {
     .first();
 }
 
-module.exports = { update, list };
+module.exports = { update, checkIfReviewExists };

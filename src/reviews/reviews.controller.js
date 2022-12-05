@@ -1,9 +1,10 @@
 const service = require("./reviews.service");
 const asyncErrorBoundary = require("../utils/errors/asyncErrorBoundary");
 
-function checkIfReviewExists(request, response, next) {
-  const { reviewId } = request.params;
-  if (reviewId) {
+async function checkIfReviewExists(request, response, next) {
+  const result = await service.checkIfReviewExists(request.params.reviewId);
+
+  if (result.length !== 0) {
     return next();
   }
   next({ status: 404, message: `Review cannot be found.` });
