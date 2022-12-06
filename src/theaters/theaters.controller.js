@@ -17,16 +17,16 @@ async function list(request, response, next) {
           title: movie.title,
           runtime_in_minutes: movie.runtime_in_minutes,
           rating: movie.rating,
+          image_url: movie.image_url,
         },
       ],
     };
-  }, {});
+  });
 
   const newArray = [];
 
   for (let i = 0; i < testResult.length; i++) {
     if (newArray.find((theater) => theater.name === testResult[i].name)) {
-      console.log("here");
       //find in the new array the object with the same name, and add the movie of testResult[i] to the movies array of this object
       newArray
         .find((obj) => obj.name === testResult[i].name)
