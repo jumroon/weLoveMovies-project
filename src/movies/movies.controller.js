@@ -34,9 +34,10 @@ async function getTheaters(request, response) {
 
 async function getReviews(request, response) {
   const resultArray = await service.getReviews(request.params.movieId);
-  let result = resultArray.map((item) => {
+  const result = resultArray.map((item) => {
     return {
       movie_id: item.movie_id,
+      review_id: item.review_id,
       critic: {
         preferred_name: item.preferred_name,
         surname: item.surname,
