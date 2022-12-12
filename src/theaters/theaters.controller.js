@@ -14,6 +14,7 @@ async function list(request, response, next) {
       zip: movie.zip,
       movies: [
         {
+          movie_id: movie.movie_id,
           title: movie.title,
           runtime_in_minutes: movie.runtime_in_minutes,
           rating: movie.rating,
