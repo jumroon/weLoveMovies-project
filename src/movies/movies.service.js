@@ -19,11 +19,18 @@ function getMovieById(movieId) {
   return knex("movies").select("*").where({ movie_id: movieId });
 }
 
+// function getTheaters(movieId) {
+//   return knex("movies_theaters")
+//     .join("theaters")
+//     .distinct("name")
+//     .where({ movie_id: movieId });
+// }
+
 function getTheaters(movieId) {
   return knex("movies_theaters")
     .join("theaters")
-    .distinct("name")
-    .where({ movie_id: movieId });
+    .where({ movie_id: movieId })
+    .distinct("name");
 }
 
 function getReviews(movieId) {
