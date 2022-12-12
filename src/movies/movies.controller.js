@@ -45,7 +45,6 @@ async function getReviews(request, response) {
     };
   });
 
-  console.log("NEWARRAY", result);
   response.status(200).json({ data: result });
 }
 module.exports = {

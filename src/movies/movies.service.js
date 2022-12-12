@@ -28,9 +28,11 @@ function getMovieById(movieId) {
 
 function getTheaters(movieId) {
   return knex("movies_theaters")
-    .join("theaters")
-    .where({ movie_id: movieId })
-    .distinct("name");
+    .join("theaters", {
+      "theaters.theater_id": "movies_theaters.theater_id",
+    })
+    .where({ movie_id: movieId });
+  // .distinct("name");
 }
 
 function getReviews(movieId) {
